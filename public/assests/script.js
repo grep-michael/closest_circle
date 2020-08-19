@@ -13,9 +13,9 @@ function draw(){
     
     for(i=0;i<circles.length;i++){
         fill(0);
-        stroke(0);
+        noStroke();
         if (circle[i] != closestCircle){
-            line(circles[i].x, circles[i].y, mouseX, mouseY);
+            //line(circles[i].x, circles[i].y, mouseX, mouseY);
             ellipse(circles[i].x, circles[i].y, circles[i].r * 2, circles[i].r * 2);
         }
     }
@@ -44,7 +44,7 @@ function getClosestCircle(){
 
 function makeCircle(){
     let prot = 0;
-    while(circles.length < 10){
+    while(circles.length < 20){
         prot++;
         c = {
             x:int(random(0,width)),
