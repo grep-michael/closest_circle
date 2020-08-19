@@ -6,25 +6,49 @@ function setup(){
     background(245);
     makeCircle();
 }
-
+var closestCircle;
 function draw(){
+    closestCircle = getClosestCircle()
     background(245);
+    
     for(i=0;i<circles.length;i++){
-        noStroke();
-        fill(0);  
-        ellipse(circles[i].x, circles[i].y, circles[i].r * 2, circles[i].r * 2);
+        fill(0);
+        stroke(0);
+        if (circle[i] != closestCircle){
+            line(circles[i].x, circles[i].y, mouseX, mouseY);
+            ellipse(circles[i].x, circles[i].y, circles[i].r * 2, circles[i].r * 2);
+        }
     }
+    fill(0, 255, 0);
+    stroke(0, 255, 0);
+    line(closestCircle.x, closestCircle.y, mouseX, mouseY);
+    ellipse(closestCircle.x, closestCircle.y, closestCircle.r * 2, closestCircle.r * 2);
+
+
+
 }
+
+function getClosestCircle(){
+    let smallest = 10000;
+    c = {};
+    for (i = 0; i < circles.length; i++) {
+        dit = dist(mouseX, mouseY,circles[i].x, circles[i].y)
+        if (dit < smallest){
+            smallest = dit
+            c = circles[i];
+        }
+    }
+    return c;
+}
+
 
 function makeCircle(){
     let prot = 0;
-    while(circles.length < 6){
+    while(circles.length < 10){
         prot++;
-        console.log(circles)
-        console.log("-----------------------------------")
         c = {
-            x:random(0,width),
-            y:random(0,height),
+            x:int(random(0,width)),
+            y:int(random(0,height)),
             r:20
         }
 
